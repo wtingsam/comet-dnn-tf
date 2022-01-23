@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --nodes=1              # request 2 nodes
+#SBATCH --mincpus=1            # allocate one task per node...
+#SBATCH --ntasks=1             # ...which means 2 tasks in total (see note below)
+#SBATCH --cpus-per-task=2      # use 6 threads per task
+#SBATCH --gres=gpu:1           # use 1 GPU per node (i.e. use one GPU per task)
+#SBATCH --time=02:00:00        # run for 1 hour
+
+module load modenv/eb
+module load tensorflow
+
+srun python ../test-scripts/testGPU.py
+
